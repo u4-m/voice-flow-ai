@@ -22,6 +22,7 @@ class Transcriptions extends Model
      */
     protected $fillable = [
         'user_id',
+        'project_id',
         'title',
         'audio_file_path',
         'transcription',
@@ -82,6 +83,16 @@ class Transcriptions extends Model
         return $this->belongsTo(User::class)->withDefault([
             'name' => 'System',
             'email' => 'system@example.com',
+        ]);
+    }
+
+    /**
+     * Get the project that owns the transcription.
+     */
+    public function project()
+    {
+        return $this->belongsTo(Project::class)->withDefault([
+            'name' => 'No Project',
         ]);
     }
 

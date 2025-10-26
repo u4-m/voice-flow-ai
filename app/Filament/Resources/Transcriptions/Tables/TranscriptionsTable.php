@@ -19,6 +19,7 @@ class TranscriptionsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->query(\App\Models\Transcriptions::query()->where('user_id', auth()->id()))
             ->columns([
                 TextColumn::make('title')
                     ->searchable()
